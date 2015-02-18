@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<configuration>
+
+    <datafiles>../data/</datafiles>
+
+    <device name="router1">
+        <ip>123.123.123.121</ip>
+        <pollerinterval>10</pollerinterval>
+        <snmp>
+            <version>v2c</version>
+            <community>supersecret</community>
+        </snmp>
+        <interface>
+            <name>eth0:1</name>
+            <oid>1.2.3.4.5.6.7.8</oid>
+            <speed>1000</speed>
+        </interface>
+        <interface>
+            <name>eth0:2</name>
+            <oid>1.2.3.4.5.6.7.9</oid>
+            <speed>1000</speed>
+        </interface>
+    </device>
+
+    <device name="router2">
+        <ip>123.123.123.122</ip>
+        <pollerinterval>20</pollerinterval>
+        <snmp>
+            <version>v2c</version>
+            <community>supersecret</community>
+        </snmp>
+        <interface>
+            <name>eth0:1</name>
+            <oid>1.2.3.4.5.6.7.8</oid>
+            <speed>1000</speed>
+        </interface>
+        <interface>
+            <name>eth0:2</name>
+            <oid>1.2.3.4.5.6.7.9</oid>
+            <speed>1000</speed>
+        </interface>
+    </device>
+
+    <device name="router3">
+        <ip>123.123.123.123</ip>
+        <pollerinterval>30</pollerinterval>
+        <snmp>
+            <version>v2c</version>
+            <community>supersecret</community>
+        </snmp>
+        <interface>
+            <name>eth0:1</name>
+            <oid>1.2.3.4.5.6.7.8</oid>
+            <speed>1000</speed>
+        </interface>
+        <interface>
+            <name>eth0:2</name>
+            <oid>1.2.3.4.5.6.7.9</oid>
+            <speed>1000</speed>
+        </interface>
+    </device>
+
+</configuration>
