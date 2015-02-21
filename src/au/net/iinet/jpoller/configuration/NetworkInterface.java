@@ -3,12 +3,14 @@ package au.net.iinet.jpoller.configuration;
 public class NetworkInterface {
 
     private String name;
-    private String oid;
+    private String inoid;
+    private String outoid;
     private int speed;
 
     public NetworkInterface() {
         this.name = null;
-        this.oid = null;
+        this.inoid = null;
+        this.outoid = null;
         this.speed = 100;
     }
 
@@ -31,12 +33,20 @@ public class NetworkInterface {
         this.name = name;
     }
 
-    public String getOid() {
-        return oid;
+    public String getInOid() {
+        return inoid;
     }
 
-    public void setOid(String oid) {
-        this.oid = oid;
+    public void setInOid(String oid) {
+        this.inoid = oid;
+    }
+
+    public String getOutOid() {
+        return outoid;
+    }
+
+    public void setOutOid(String oid) {
+        this.outoid = oid;
     }
 
     public int getSpeed() {

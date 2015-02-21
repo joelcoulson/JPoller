@@ -34,7 +34,8 @@ public class ConfigurationTest {
 
         for(String key : keys) {
             System.out.println("Interface Name: " + networkInterfaces.get(key).getName());
-            System.out.println("Interface OID: " + networkInterfaces.get(key).getOid());
+            System.out.println("Interface In OID: " + networkInterfaces.get(key).getInOid());
+            System.out.println("Interface Out OID: " + networkInterfaces.get(key).getOutOid());
             System.out.println("Interface Speed: " + networkInterfaces.get(key).getSpeed() + "\n");
         }
     }

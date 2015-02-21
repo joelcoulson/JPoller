@@ -117,14 +117,18 @@ public class Configuration {
                         networkInterface.setName(iNode.getChildNodes().item(0).getNodeValue());
                     }
 
-                    if(iNode.getNodeName().equals("oid")) {
-                        networkInterface.setOid(iNode.getChildNodes().item(0).getNodeValue());
+                    if(iNode.getNodeName().equals("inoid")) {
+                        networkInterface.setInOid(iNode.getChildNodes().item(0).getNodeValue());
+                    }
+
+                    if(iNode.getNodeName().equals("outoid")) {
+                        networkInterface.setOutOid(iNode.getChildNodes().item(0).getNodeValue());
                     }
 
                     if(iNode.getNodeName().equals("speed")) {
                         networkInterface.setSpeed(Integer.parseInt(iNode.getChildNodes().item(0).getNodeValue()));
                     }
-                    
+
                 }
 
                 device.addInterface(networkInterface);

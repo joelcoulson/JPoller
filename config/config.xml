@@ -13,12 +13,14 @@
         </snmp>
         <interface>
             <name>eth0:1</name>
-            <oid>1.2.3.4.5.6.7.8</oid>
+            <inoid>1.2.3.4.5.6.7.8</inoid>
+            <outoid>1.2.3.4.5.6.7.9</outoid>
             <speed>1000</speed>
         </interface>
         <interface>
             <name>eth0:2</name>
-            <oid>1.2.3.4.5.6.7.9</oid>
+            <inoid>1.2.3.4.5.6.7.8</inoid>
+            <outoid>1.2.3.4.5.6.7.9</outoid>
             <speed>1000</speed>
         </interface>
     </device>
@@ -32,12 +34,14 @@
         </snmp>
         <interface>
             <name>eth0:1</name>
-            <oid>1.2.3.4.5.6.7.8</oid>
+            <inoid>1.2.3.4.5.6.7.8</inoid>
+            <outoid>1.2.3.4.5.6.7.9</outoid>
             <speed>1000</speed>
         </interface>
         <interface>
             <name>eth0:2</name>
-            <oid>1.2.3.4.5.6.7.9</oid>
+            <inoid>1.2.3.4.5.6.7.8</inoid>
+            <outoid>1.2.3.4.5.6.7.9</outoid>
             <speed>1000</speed>
         </interface>
     </device>
@@ -51,12 +55,14 @@
         </snmp>
         <interface>
             <name>eth0:1</name>
-            <oid>1.2.3.4.5.6.7.8</oid>
+            <inoid>1.2.3.4.5.6.7.8</inoid>
+            <outoid>1.2.3.4.5.6.7.9</outoid>
             <speed>1000</speed>
         </interface>
         <interface>
             <name>eth0:2</name>
-            <oid>1.2.3.4.5.6.7.9</oid>
+            <inoid>1.2.3.4.5.6.7.8</inoid>
+            <outoid>1.2.3.4.5.6.7.9</outoid>
             <speed>1000</speed>
         </interface>
     </device>
