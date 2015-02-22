@@ -6,6 +6,10 @@ import java.io.File;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+import au.net.iinet.jpoller.poller.Device;
+import au.net.iinet.jpoller.poller.DeviceDatabase;
+import au.net.iinet.jpoller.poller.NetworkInterface;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -15,11 +19,11 @@ public class Configuration {
     private final File CONFIG_FILE = new File("./config/config.xml");
     private Document doc;
     private String dataDirectory;
-    private ArrayList<Device> devices;
+    private DeviceDatabase devices;
 
     public Configuration() {
         this.dataDirectory = "";
-        this.devices = new ArrayList<>();
+        this.devices = new DeviceDatabase();
         parseConfiguration();
     }
 
@@ -47,7 +51,8 @@ public class Configuration {
 
                     // parse the device
                     if (topLevelNodes.item(i).getNodeName().equals("device")) {
-                        devices.add(parseDevice(topLevelNodes.item(i)));
+                        Device device = parseDevice(topLevelNodes.item(i));
+                        devices.put(device.getName(), device);
                     }
                 }
             }
@@ -57,7 +62,7 @@ public class Configuration {
         }
     }
 
-    public ArrayList<Device> getDevices() {
+    public DeviceDatabase getDevices() {
         return this.devices;
     }
 
@@ -141,7 +146,7 @@ public class Configuration {
 
                 }
 
-                device.addInterface(networkInterface);
+                device.getNetworkInterfaces().put(networkInterface.getName(), networkInterface);
             }
         }
 

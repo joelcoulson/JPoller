@@ -1,6 +1,9 @@
 package au.net.iinet.jpoller.tests;
 
 import au.net.iinet.jpoller.configuration.*;
+import au.net.iinet.jpoller.poller.Device;
+import au.net.iinet.jpoller.poller.DeviceDatabase;
+import au.net.iinet.jpoller.poller.NetworkInterface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +16,12 @@ public class ConfigurationTest {
         Configuration configuration = new Configuration();
 
         System.out.println("Data directory: " + configuration.getDataDirectory());
-        ArrayList<Device> devices = configuration.getDevices();
+        DeviceDatabase devices = configuration.getDevices();
+        Set<String> keys = devices.keySet();
 
-        for(Device device : devices) {
+        for(String key: keys) {
             System.out.println("-------------------------------------");
-            showDevice(device);
+            showDevice(devices.get(key));
         }
 
     }

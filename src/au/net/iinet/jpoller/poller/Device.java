@@ -1,8 +1,8 @@
-package au.net.iinet.jpoller.configuration;
+package au.net.iinet.jpoller.poller;
 
-import java.util.HashMap;
+import java.io.Serializable;
 
-public class Device {
+public class Device implements Serializable {
 
     private String name;
     private String ip;
@@ -11,7 +11,7 @@ public class Device {
     private int port;
     private int interval;
     private int timeout;
-    private HashMap<String, NetworkInterface> networkInterfaces;
+    private NetworkInterfaceDatabase networkInterfaces;
 
     public Device() {
         this.name = "";
@@ -20,15 +20,15 @@ public class Device {
         this.port = 161;
         this.interval = 60;
         this.timeout = 1000;
-        this.networkInterfaces = new HashMap<>();
+        this.networkInterfaces = new NetworkInterfaceDatabase();
     }
 
-    public Device(String name, String ip, String snmpCommunity, int pollerInterval, HashMap<String, NetworkInterface> networkInterfaces) {
+    public Device(String name, String ip, String snmpCommunity, int pollerInterval, NetworkInterfaceDatabase networkInterfaceDatabase) {
 
         this.name = name;
         this.ip = ip;
         this.snmpCommunity = snmpCommunity;
-        this.networkInterfaces = networkInterfaces;
+        this.networkInterfaces = networkInterfaceDatabase;
 
         if(pollerInterval > 1) {
             this.interval = pollerInterval;
@@ -93,11 +93,8 @@ public class Device {
         this.timeout = timeout;
     }
 
-    public HashMap<String, NetworkInterface> getNetworkInterfaces() {
+    public NetworkInterfaceDatabase getNetworkInterfaces() {
         return networkInterfaces;
     }
 
-    public void addInterface(NetworkInterface networkInterface) {
-        this.networkInterfaces.put(networkInterface.getName(), networkInterface);
-    }
 }
