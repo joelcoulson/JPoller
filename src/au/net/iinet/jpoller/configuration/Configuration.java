@@ -12,7 +12,7 @@ import org.w3c.dom.NodeList;
 
 public class Configuration {
 
-    private final File CONFIG_FILE = new File(".\\config\\config.xml");
+    private final File CONFIG_FILE = new File("./config/config.xml");
     private Document doc;
     private String dataDirectory;
     private ArrayList<Device> devices;
@@ -78,9 +78,19 @@ public class Configuration {
                 device.setIp(nNode.getChildNodes().item(0).getNodeValue());
             }
 
+            // get the poller port
+            if(nNode.getNodeName().equals("port")) {
+                device.setPort(Integer.parseInt(nNode.getChildNodes().item(0).getNodeValue()));
+            }
+
             // get the poller interval
             if(nNode.getNodeName().equals("pollerinterval")) {
-                device.setPollerInterval(Integer.parseInt(nNode.getChildNodes().item(0).getNodeValue()));
+                device.setInterval(Integer.parseInt(nNode.getChildNodes().item(0).getNodeValue()));
+            }
+
+            // get the poller timeout
+            if(nNode.getNodeName().equals("timeout")) {
+                device.setTimeout(Integer.parseInt(nNode.getChildNodes().item(0).getNodeValue()));
             }
 
             // get the snmp values

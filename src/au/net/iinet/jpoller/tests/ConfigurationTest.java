@@ -25,6 +25,8 @@ public class ConfigurationTest {
     public static void showDevice(Device device) {
         System.out.println("Name: " + device.getName() + "\n");
         System.out.println("IP: " + device.getIp());
+        System.out.println("Port: " + device.getPort());
+        System.out.println("Timeout: " + device.getTimeout());
         System.out.println("SNMP Community: " + device.getSnmpCommunity());
         System.out.println("SNMP Version: " + device.getSnmpVersion() + "\n");
 

@@ -4,66 +4,72 @@
 
     <datafiles>../data/</datafiles>
 
-    <device name="router1">
-        <ip>123.123.123.121</ip>
+    <device name="Computer1">
+        <ip>127.0.0.1</ip>
+        <port>161</port>
         <pollerinterval>10</pollerinterval>
+        <timeout>10000</timeout>
         <snmp>
             <version>v2c</version>
-            <community>supersecret</community>
+            <community>public</community>
         </snmp>
         <interface>
             <name>eth0:1</name>
-            <inoid>1.2.3.4.5.6.7.8</inoid>
-            <outoid>1.2.3.4.5.6.7.9</outoid>
-            <speed>1000</speed>
+            <inoid>.1.3.6.1.2.1.2.2.1.16.1</inoid>
+            <outoid>.1.3.6.1.2.1.2.2.1.16.2</outoid>
+            <speed>100</speed>
         </interface>
         <interface>
             <name>eth0:2</name>
-            <inoid>1.2.3.4.5.6.7.8</inoid>
-            <outoid>1.2.3.4.5.6.7.9</outoid>
-            <speed>1000</speed>
+            <inoid>.1.3.6.1.2.1.2.2.1.16.1</inoid>
+            <outoid>.1.3.6.1.2.1.2.2.1.16.1</outoid>
+            <speed>100</speed>
         </interface>
     </device>
 
-    <device name="router2">
-        <ip>123.123.123.122</ip>
+    <device name="Computer2">
+        <ip>127.0.0.2</ip>
+        <port>161</port>
         <pollerinterval>20</pollerinterval>
+        <timeout>10000</timeout>
         <snmp>
             <version>v2c</version>
-            <community>supersecret</community>
+            <community>public</community>
         </snmp>
         <interface>
             <name>eth0:1</name>
-            <inoid>1.2.3.4.5.6.7.8</inoid>
-            <outoid>1.2.3.4.5.6.7.9</outoid>
-            <speed>1000</speed>
+            <inoid>.1.3.6.1.2.1.2.2.1.16.1</inoid>
+            <outoid>.1.3.6.1.2.1.2.2.1.16.2</outoid>
+            <speed>100</speed>
         </interface>
         <interface>
             <name>eth0:2</name>
-            <inoid>1.2.3.4.5.6.7.8</inoid>
-            <outoid>1.2.3.4.5.6.7.9</outoid>
+            <inoid>.1.3.6.1.2.1.2.2.1.16.1</inoid>
+            <outoid>.1.3.6.1.2.1.2.2.1.16.2</outoid>
             <speed>1000</speed>
         </interface>
     </device>
 
-    <device name="router3">
-        <ip>123.123.123.123</ip>
+    <device name="Computer3">
+        <ip>127.0.0.3</ip>
+        <port>161</port>
         <pollerinterval>30</pollerinterval>
+        <timeout>10000</timeout>
         <snmp>
             <version>v2c</version>
-            <community>supersecret</community>
+            <community>public</community>
         </snmp>
         <interface>
             <name>eth0:1</name>
-            <inoid>1.2.3.4.5.6.7.8</inoid>
-            <outoid>1.2.3.4.5.6.7.9</outoid>
-            <speed>1000</speed>
+            <inoid>.1.3.6.1.2.1.2.2.1.16.1</inoid>
+            <outoid>.1.3.6.1.2.1.2.2.1.16.2</outoid>
+            <speed>100</speed>
         </interface>
         <interface>
             <name>eth0:2</name>
-            <inoid>1.2.3.4.5.6.7.8</inoid>
-            <outoid>1.2.3.4.5.6.7.9</outoid>
-            <speed>1000</speed>
+            <inoid>.1.3.6.1.2.1.2.2.1.16.1</inoid>
+            <outoid>.1.3.6.1.2.1.2.2.1.16.2</outoid>
+            <speed>100</speed>
         </interface>
     </device>
 

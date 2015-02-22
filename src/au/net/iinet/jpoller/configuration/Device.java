@@ -8,14 +8,18 @@ public class Device {
     private String ip;
     private String snmpCommunity;
     private String snmpVersion;
-    private int pollerInterval;
+    private int port;
+    private int interval;
+    private int timeout;
     private HashMap<String, NetworkInterface> networkInterfaces;
 
     public Device() {
         this.name = "";
         this.ip = "";
         this.snmpCommunity = "public";
-        this.pollerInterval = 60;
+        this.port = 161;
+        this.interval = 60;
+        this.timeout = 1000;
         this.networkInterfaces = new HashMap<>();
     }
 
@@ -27,7 +31,7 @@ public class Device {
         this.networkInterfaces = networkInterfaces;
 
         if(pollerInterval > 1) {
-            this.pollerInterval = pollerInterval;
+            this.interval = pollerInterval;
         } else {
             throw new IllegalArgumentException();
         }
@@ -65,12 +69,28 @@ public class Device {
         this.snmpVersion = snmpVersion;
     }
 
-    public int getPollerInterval() {
-        return pollerInterval;
+    public int getPort() {
+        return port;
     }
 
-    public void setPollerInterval(int pollerInterval) {
-        this.pollerInterval = pollerInterval;
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public int getInterval() {
+        return interval;
+    }
+
+    public void setInterval(int interval) {
+        this.interval = interval;
+    }
+
+    public int getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
     }
 
     public HashMap<String, NetworkInterface> getNetworkInterfaces() {
