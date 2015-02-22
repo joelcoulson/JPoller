@@ -16,7 +16,7 @@ public class SNMPAgentTest {
         final Future<Long> task;
 
         service = Executors.newFixedThreadPool(1);
-        task = service.submit(new SNMPAgent("127.0.0.2", SNMPVersion.v2c, "public", ".1.3.6.1.2.1.2.2.1.16.1", 161, 5000));
+        task = service.submit(new SNMPAgent("127.0.0.2", SNMPVersion.v2c, "public", ".1.3.6.1.2.1.2.2.1.16.1", 161, 500));
 
         try {
 
