@@ -3,12 +3,11 @@ package au.net.iinet.jpoller.configuration;
 // kudos to MyKong for the info found at http://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
 
 import java.io.File;
-import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import au.net.iinet.jpoller.poller.Device;
-import au.net.iinet.jpoller.poller.DeviceDatabase;
+import au.net.iinet.jpoller.poller.DeviceDAO;
 import au.net.iinet.jpoller.poller.NetworkInterface;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -19,11 +18,11 @@ public class Configuration {
     private final File CONFIG_FILE = new File("./config/config.xml");
     private Document doc;
     private String dataDirectory;
-    private DeviceDatabase devices;
+    private DeviceDAO devices;
 
     public Configuration() {
         this.dataDirectory = "";
-        this.devices = new DeviceDatabase();
+        this.devices = new DeviceDAO();
         parseConfiguration();
     }
 
@@ -62,7 +61,7 @@ public class Configuration {
         }
     }
 
-    public DeviceDatabase getDevices() {
+    public DeviceDAO getDevices() {
         return this.devices;
     }
 

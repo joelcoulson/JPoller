@@ -2,10 +2,9 @@ package au.net.iinet.jpoller.tests;
 
 import au.net.iinet.jpoller.configuration.*;
 import au.net.iinet.jpoller.poller.Device;
-import au.net.iinet.jpoller.poller.DeviceDatabase;
+import au.net.iinet.jpoller.poller.DeviceDAO;
 import au.net.iinet.jpoller.poller.NetworkInterface;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -16,7 +15,7 @@ public class ConfigurationTest {
         Configuration configuration = new Configuration();
 
         System.out.println("Data directory: " + configuration.getDataDirectory());
-        DeviceDatabase devices = configuration.getDevices();
+        DeviceDAO devices = configuration.getDevices();
         Set<String> keys = devices.keySet();
 
         for(String key: keys) {

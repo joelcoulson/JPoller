@@ -2,12 +2,8 @@ package au.net.iinet.jpoller.poller;
 
 import au.net.iinet.jpoller.configuration.Configuration;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
 
 public class Poller {
 
@@ -17,21 +13,19 @@ public class Poller {
         configuration = new Configuration();
     }
 
-    private void startPolling() {
+    public void startPolling() {
 
         // start a separate polling process for each device
-        DeviceDatabase devices = configuration.getDevices();
-        Set<String> keys = devices.keySet();
+        DeviceDAO devices = configuration.getDevices();
+        Set<String> deviceKeys = devices.keySet();
+        ArrayList<Thread> threads = new ArrayList<Thread>();
 
-        for(String key : keys) {
-            pollDevice(devices.get(key));
+        for(String deviceKey : deviceKeys) {
+
+            threads.add(new Thread(new DevicePoller(devices.get(deviceKey))));
+            threads.get(threads.size()-1).start();
+
         }
-    }
-
-    private void pollDevice(Device device) {
-
-        // use the executer service here
-
     }
 
 }

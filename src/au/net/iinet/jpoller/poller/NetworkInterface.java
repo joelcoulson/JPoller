@@ -6,16 +6,12 @@ public class NetworkInterface {
     private String inoid;
     private String outoid;
     private int speed;
-    private DatapointDatabase inDataPoints;
-    private DatapointDatabase outDataPoints;
 
     public NetworkInterface() {
         this.name = null;
         this.inoid = null;
         this.outoid = null;
         this.speed = 100;
-        this.inDataPoints = new DatapointDatabase();
-        this.outDataPoints = new DatapointDatabase();
     }
 
     public NetworkInterface(String name, int speed) {
@@ -61,11 +57,4 @@ public class NetworkInterface {
         this.speed = speed;
     }
 
-    public DatapointDatabase getInDataPoints() {
-        return this.inDataPoints;
-    }
-
-    public DatapointDatabase getOutDataPoints() {
-        return this.outDataPoints;
-    }
 }

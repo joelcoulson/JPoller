@@ -11,7 +11,7 @@ public class Device implements Serializable {
     private int port;
     private int interval;
     private int timeout;
-    private NetworkInterfaceDatabase networkInterfaces;
+    private NetworkInterfaceDAO networkInterfaces;
 
     public Device() {
         this.name = "";
@@ -20,10 +20,10 @@ public class Device implements Serializable {
         this.port = 161;
         this.interval = 60;
         this.timeout = 1000;
-        this.networkInterfaces = new NetworkInterfaceDatabase();
+        this.networkInterfaces = new NetworkInterfaceDAO();
     }
 
-    public Device(String name, String ip, String snmpCommunity, int pollerInterval, NetworkInterfaceDatabase networkInterfaceDatabase) {
+    public Device(String name, String ip, String snmpCommunity, int pollerInterval, NetworkInterfaceDAO networkInterfaceDatabase) {
 
         this.name = name;
         this.ip = ip;
@@ -93,7 +93,7 @@ public class Device implements Serializable {
         this.timeout = timeout;
     }
 
-    public NetworkInterfaceDatabase getNetworkInterfaces() {
+    public NetworkInterfaceDAO getNetworkInterfaces() {
         return networkInterfaces;
     }
 
