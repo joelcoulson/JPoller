@@ -15,7 +15,7 @@ import org.w3c.dom.NodeList;
 
 public class Configuration {
 
-    private final File CONFIG_FILE = new File("./config/config.xml");
+    private final File configFile = new File("./config/config.xml");
     private Document doc;
     private String dataDirectory;
     private DeviceDAO devices;
@@ -31,10 +31,11 @@ public class Configuration {
     }
 
     private void parseConfiguration() {
+
         try {
 
             DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document doc = dBuilder.parse(CONFIG_FILE);
+            Document doc = dBuilder.parse(configFile);
 
             if (doc.hasChildNodes()) {
 
@@ -59,6 +60,7 @@ public class Configuration {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     public DeviceDAO getDevices() {
