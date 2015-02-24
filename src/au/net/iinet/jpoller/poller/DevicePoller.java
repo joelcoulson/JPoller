@@ -1,69 +1,31 @@
 package au.net.iinet.jpoller.poller;
 
-import au.net.iinet.jpoller.filestore.DataDAO;
+import au.net.iinet.jpoller.configuration.Configuration;
 
+import java.util.ArrayList;
 import java.util.Set;
 
-public class DevicePoller implements Runnable {
+public class DevicePoller {
 
-    private Device device;
+    private Configuration configuration;
 
     public DevicePoller() {
-        this.device = new Device();
+        configuration = new Configuration();
     }
 
-    public DevicePoller(Device device) {
-        this.device = device;
-    }
+    public void startPolling() {
 
-    @Override
-    public void run() {
+        // start a separate polling process for each device
+        DeviceDAO devices = configuration.getDevices();
+        Set<String> deviceKeys = devices.keySet();
+        ArrayList<Thread> threads = new ArrayList<Thread>();
 
-        NetworkInterfaceDAO interfaces = device.getNetworkInterfaces();
-        Set<String> interfaceKeys = interfaces.keySet();
+        for(String deviceKey : deviceKeys) {
 
-        // run forever
-        try {
+            threads.add(new Thread(new InterfacePoller(devices.get(deviceKey))));
+            threads.get(threads.size()-1).start();
 
-            while (true) {
-
-                // poll each interface every interval seconds
-                for(String interfaceKey : interfaceKeys) {
-
-                    NetworkInterface networkInterface = interfaces.get(interfaceKey);
-
-                    //SNMPAgent snmpAgent = new SNMPAgent("127.0.0.2", SNMPVersion.v2c, "public", ".1.3.6.1.2.1.2.2.1.16.1", 161, 1000);
-                    SNMPVersion snmpVersion;
-
-                    switch(device.getSnmpCommunity()) {
-                        case "v1":
-                            snmpVersion = SNMPVersion.v1;
-                            break;
-                        case "v2c":
-                            snmpVersion = SNMPVersion.v2c;
-                            break;
-                        case "3":
-                            snmpVersion = SNMPVersion.v3;
-                            break;
-                        default:
-                            snmpVersion = SNMPVersion.v2c;
-                    }
-
-                    SNMPAgent snmpAgentIn = new SNMPAgent(device.getIp(), snmpVersion, device.getSnmpCommunity(), networkInterface.getInOid(), device.getPort(), device.getTimeout());
-                    SNMPAgent snmpAgentOut = new SNMPAgent(device.getIp(), snmpVersion, device.getSnmpCommunity(), networkInterface.getOutOid(), device.getPort(), device.getTimeout());
-
-                    // write the values back to disk
-                    DataDAO dataDAO = new DataDAO();
-                    dataDAO.add(device, networkInterface, networkInterface.getInOid(), snmpAgentIn.getOidValue());
-                    dataDAO.add(device, networkInterface, networkInterface.getOutOid(), snmpAgentOut.getOidValue());
-
-                }
-
-                Thread.sleep(device.getInterval()*1000);
-            }
-
-        }catch(InterruptedException ie){
-            ie.printStackTrace();
         }
     }
+
 }
