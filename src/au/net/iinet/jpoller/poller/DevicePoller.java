@@ -13,7 +13,7 @@ public class DevicePoller {
         configuration = new Configuration();
     }
 
-    public void startPolling() {
+    public void poll() {
 
         // start a separate polling process for each device
         DeviceDAO devices = configuration.getDevices();
