@@ -25,6 +25,7 @@ public class DataDAO {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(new File(configuration.getDataDirectory()+"/"+device.getName()+"_"+networkInterface.getName()+"_"+oid + ".csv"), true))) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd hh:mm:ss");
             bw.write(simpleDateFormat.format(new Date()) + "," + value + "\n");
+            bw.close();
         } catch(IOException ioe) {
             ioe.printStackTrace();
         }

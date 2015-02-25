@@ -22,21 +22,25 @@ public class SNMPAgent implements Callable<Long> {
     private int timeout;
 
     public SNMPAgent() {
+
         host = "";
         version = SNMPVersion.v2c;
         community = "";
         oid = "";
         port = 161;
         timeout = 500;
+
     }
 
     public SNMPAgent(String host, SNMPVersion version, String community, String oid, int port, int timeout) {
+
         this.host = host;
         this.version = version;
         this.community = community;
         this.oid = oid;
         this.port = port;
         this.timeout = timeout;
+
     }
 
     public String getHost() {
@@ -124,38 +128,38 @@ public class SNMPAgent implements Callable<Long> {
             ResponseEvent responseEvent;
             responseEvent = snmp4j.send(request, target);
 
-            if (responseEvent != null)
-            {
+            if (responseEvent != null) {
+
                 responsePDU = responseEvent.getResponse();
-                if ( responsePDU != null)
-                {
+
+                if ( responsePDU != null) {
 
                     Vector<? extends VariableBinding> tmpv = responsePDU.getVariableBindings();
 
-                    if(tmpv != null)
-                    {
-                        for(int k = 0; k <tmpv.size();k++)
-                        {
+                    if(tmpv != null) {
+
+                        for(int k = 0; k <tmpv.size();k++) {
+
                             VariableBinding vb = (VariableBinding) tmpv.get(k);
                             String output = null;
-                            if ( vb.isException())
-                            {
+
+                            if ( vb.isException()) {
 
                                 String errorstring = vb.getVariable().getSyntaxString();
                                 System.out.println("Error: " + errorstring);
-                            }
-                            else
-                            {
+                                snmp4j.close();
+
+                            } else {
+
                                 String sOid = vb.getOid().toString();
                                 Variable var = vb.getVariable();
                                 Counter32 counter = new Counter32(var.toLong());
+                                snmp4j.close();
                                 return counter.toLong();
+
                             }
-
                         }
-
                     }
-
                 }
             }
 

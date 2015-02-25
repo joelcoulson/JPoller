@@ -1,12 +1,14 @@
 package au.net.iinet.jpoller.console;
 
-import au.net.iinet.jpoller.poller.DevicePoller;
+import au.net.iinet.jpoller.poller.Poller;
 
 public class Console {
 
     public static void main(String[] args) {
-        DevicePoller poller = new DevicePoller();
-        poller.startPolling();
+
+        Poller poller = new Poller();
+        poller.start();
+
     }
 
 }

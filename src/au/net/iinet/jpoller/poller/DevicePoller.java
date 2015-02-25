@@ -1,31 +1,39 @@
 package au.net.iinet.jpoller.poller;
 
-import au.net.iinet.jpoller.configuration.Configuration;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import java.util.ArrayList;
-import java.util.Set;
+public class DevicePoller implements Runnable{
 
-public class DevicePoller {
+    private Device device;
 
-    private Configuration configuration;
+    public DevicePoller() {}
 
-    public DevicePoller() {
-        configuration = new Configuration();
+    public DevicePoller(Device device) {
+        this.device = device;
     }
 
-    public void poll() {
+    public void run() {
 
-        // start a separate polling process for each device
-        DeviceDAO devices = configuration.getDevices();
-        Set<String> deviceKeys = devices.keySet();
-        ArrayList<Thread> threads = new ArrayList<Thread>();
+        try {
 
-        for(String deviceKey : deviceKeys) {
+            Runnable task = new InterfacePoller(device);
+            ExecutorService executorService = Executors.newFixedThreadPool(1);
 
-            threads.add(new Thread(new InterfacePoller(devices.get(deviceKey))));
-            threads.get(threads.size()-1).start();
+            while(true) {
 
+                // poll the device's interfaces
+                executorService.submit(task);
+
+                // pause before polling again
+                Thread.sleep(device.getInterval()*1000);
+
+            }
+
+        }catch(InterruptedException ie){
+            ie.printStackTrace();
         }
+
     }
 
 }
