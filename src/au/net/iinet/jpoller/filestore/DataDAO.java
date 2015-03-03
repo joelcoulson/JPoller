@@ -19,11 +19,11 @@ public class DataDAO {
         this.configuration = new Configuration();
     }
 
-    public void add(Device device, NetworkInterface networkInterface, String oid, long value) {
+    public void add(Device device, NetworkInterface networkInterface, String oid, String value) {
 
         // the file to be written to has the format of device_interface_oid.csv
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(new File(configuration.getDataDirectory()+"/"+device.getName()+"_"+networkInterface.getName()+"_"+oid + ".csv"), true))) {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd hh:mm:ss");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
             bw.write(simpleDateFormat.format(new Date()) + "," + value + "\n");
             bw.close();
         } catch(IOException ioe) {

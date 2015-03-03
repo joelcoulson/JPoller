@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Vector;
 import java.util.concurrent.Callable;
 
-public class SNMPAgent implements Callable<Long> {
+public class SNMPAgent implements Callable<String> {
 
     private String host;
     private SNMPVersion version;
@@ -91,7 +91,7 @@ public class SNMPAgent implements Callable<Long> {
         this.timeout = timeout;
     }
 
-    public long getOidValue() {
+    public String getOidValue() {
 
         try {
 
@@ -153,9 +153,8 @@ public class SNMPAgent implements Callable<Long> {
 
                                 String sOid = vb.getOid().toString();
                                 Variable var = vb.getVariable();
-                                Counter32 counter = new Counter32(var.toLong());
                                 snmp4j.close();
-                                return counter.toLong();
+                                return var.toString();
 
                             }
                         }
@@ -167,11 +166,11 @@ public class SNMPAgent implements Callable<Long> {
             e.printStackTrace();
         }
 
-        return 0;
+        return null;
     }
 
     @Override
-    public Long call() {
+    public String call() {
         return getOidValue();
     }
 
