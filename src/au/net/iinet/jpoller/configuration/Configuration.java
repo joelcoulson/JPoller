@@ -16,18 +16,23 @@ import org.w3c.dom.NodeList;
 public class Configuration {
 
     private final File configFile = new File("./config/config.xml");
-    private Document doc;
     private String dataDirectory;
+    private String timezone;
     private DeviceDAO devices;
 
     public Configuration() {
         this.dataDirectory = "";
+        this.timezone = "UTC";
         this.devices = new DeviceDAO();
         parseConfiguration();
     }
 
     public String getDataDirectory() {
         return this.dataDirectory;
+    }
+
+    public String getTimezone() {
+        return this.timezone;
     }
 
     private void parseConfiguration() {
@@ -47,6 +52,11 @@ public class Configuration {
                     // get the data directory
                     if (topLevelNodes.item(i).getNodeName().equals("datafiles")) {
                         this.dataDirectory = topLevelNodes.item(i).getChildNodes().item(0).getNodeValue();
+                    }
+
+                    // get the timezone
+                    if (topLevelNodes.item(i).getNodeName().equals("timezone")) {
+                        this.timezone = topLevelNodes.item(i).getChildNodes().item(0).getNodeValue();
                     }
 
                     // parse the device

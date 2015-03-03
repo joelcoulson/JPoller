@@ -3,6 +3,7 @@
 <configuration>
 
     <datafiles>./data/</datafiles>
+    <timezone>Australia/Perth</timezone>
 
     <device name="Computer1">
         <ip>127.0.0.1</ip>

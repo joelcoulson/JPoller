@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class DataDAO {
 
@@ -24,6 +25,7 @@ public class DataDAO {
         // the file to be written to has the format of device_interface_oid.csv
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(new File(configuration.getDataDirectory()+"/"+device.getName()+"_"+networkInterface.getName()+"_"+oid + ".csv"), true))) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+            simpleDateFormat.setTimeZone(TimeZone.getTimeZone(configuration.getTimezone()));
             bw.write(simpleDateFormat.format(new Date()) + "," + value + "\n");
             bw.close();
         } catch(IOException ioe) {

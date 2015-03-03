@@ -15,6 +15,7 @@ public class ConfigurationTest {
         Configuration configuration = new Configuration();
 
         System.out.println("Data directory: " + configuration.getDataDirectory());
+        System.out.println("Timezone: " + configuration.getTimezone());
         DeviceDAO devices = configuration.getDevices();
         Set<String> keys = devices.keySet();
 
